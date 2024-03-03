@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Linq;
+using System.Numerics;
 
 namespace AmongUsLanguage
 {
@@ -19,7 +21,7 @@ namespace AmongUsLanguage
         {
             string filePath = Process.GetCurrentProcess().MainModule.FileName;
             string finalFolderPath = System.IO.Path.GetDirectoryName(filePath);
-            TextReader tr = new StreamReader(finalFolderPath + @"\" + @filename + ".auiabsbhhhhhtlircpuimldoioeppppppp");
+            TextReader tr = new StreamReader(finalFolderPath + @"\" + @filename + ".amolang");
             string code = tr.ReadLine();
             while (code != null)
             {
@@ -35,7 +37,63 @@ namespace AmongUsLanguage
         }
         static void RunLine(string code)
         {
+            // System.Console.WriteLine(code);
             string[] args = code.Split(" ");
+            if(code.Contains("WAIT A SEC "))
+            {
+                if (args[0] == "WAIT" && args[1] == "A" && args[2] == "SEC")
+                {
+                    currentLine++;
+                    return;
+                }
+            }
+            if(code.Contains("GUYS GUYS GUYS "))
+            {
+                for(int i = 3; i < args.Length; i++)
+                {
+                    Console.Write(args[i] + " ");
+                }
+                Console.Write("\n");
+                currentLine++;
+                return;
+            }
+            if(code.Contains("I SAW ") && code.Contains(" WITH ") && code.Contains(" IN MEDBAY"))
+            {
+                string player1 = args[2];
+                string player2 = args[4];
+                int value1 = 0;
+                int value2 = 0;
+                if (player1.All(char.IsDigit))
+                {
+                    value1 = int.Parse(player1);
+                }
+                else if (values.ContainsKey(player1))
+                {
+                    value1 = values[player1];
+                }
+
+                if (player2.All(char.IsDigit))
+                {
+                    value2 = int.Parse(player2);
+                }
+                else if (values.ContainsKey(player2))
+                {
+                    value2 = values[player2];
+                }
+
+                if(value1 != value2) { currentLine++; }
+            }
+            if(code.Contains("HOLY MOLY GUYS REWIND TO"))
+            {
+                string player = args[5];
+                if (player.All(char.IsDigit)) {
+                    currentLine = int.Parse(player) - 2;
+                }
+                else if (values.ContainsKey(player))
+                {
+                    currentLine = values[player] - 2;
+                }
+            }
             if (code.Contains("GUYS I CAN VOUCH") && code.Contains(" IS "))
             {
                 string player = args[4];
@@ -55,6 +113,14 @@ namespace AmongUsLanguage
                 if (values.ContainsKey(player))
                 {
                     Console.Write(Encoding.ASCII.GetString(new byte[] { (byte)(values[player]) }));
+                }
+            }
+            if (code.Contains("HOW MANY BODIES"))
+            {
+                string player = args[0];
+                if (values.ContainsKey(player))
+                {
+                    Console.Write(values[player]);
                 }
             }
             if (code.Contains("IS JUST LIKE"))
@@ -102,6 +168,7 @@ namespace AmongUsLanguage
                     return;
                 }
                 values.Add(player, value);
+                // System.Console.WriteLine(value);
             }
             if (code.Contains("WAS THE IMPOSTOR"))
             {
@@ -124,6 +191,18 @@ namespace AmongUsLanguage
                 {
                     values[player] -= 1;
                 }
+            }
+            if (code.Contains("HOW MANY TASKS DID YOU DO"))
+            {
+                string player = args[0];
+                int value = int.Parse(Console.ReadLine());
+                if (values.ContainsKey(player))
+                {
+                    values[player] = value;
+                    currentLine += 1;
+                    return;
+                }
+                values.Add(player, value);
             }
             if (code.Contains("WHO ARE YOU"))
             {
@@ -149,6 +228,36 @@ namespace AmongUsLanguage
                     return;
                 }
                 values.Add(player, value);
+            }
+            if(code.Contains(" WHERE WAS THE BODY"))
+            {
+                string player = args[0];
+                int value = currentLine;
+                if (values.ContainsKey(player))
+                {
+                    values[player] = value;
+                    currentLine += 1;
+                    return;
+                }
+                values.Add(player, value);
+            }
+            if(code.Contains("YOU WERE EJECTED"))
+            {
+                Environment.Exit(0);
+            }
+            if(code.Contains("WAS EJECTED"))
+            {
+                string player = args[0];
+                int exitCode = 0;
+                if (player.All(char.IsDigit))
+                {
+                    exitCode = int.Parse(player);
+                }
+                else if (values.ContainsKey(player))
+                {
+                    exitCode = values[player];
+                }
+                Environment.Exit(exitCode);
             }
             currentLine += 1;
         }
