@@ -176,7 +176,7 @@ namespace AmongUsLanguage
                     currentLine += lines.Count;
                 }    
             }
-            if (code.Contains("GOES UP"))
+            if (code.Contains(" GOES UP"))
             {
                 string player = args[0];
                 if (values.ContainsKey(player))
@@ -184,7 +184,7 @@ namespace AmongUsLanguage
                     values[player] += 1;
                 }
             }
-            if (code.Contains("GOES DOWN"))
+            if (code.Contains(" GOES DOWN"))
             {
                 string player = args[0];
                 if (values.ContainsKey(player))
@@ -232,7 +232,7 @@ namespace AmongUsLanguage
             if(code.Contains(" WHERE WAS THE BODY"))
             {
                 string player = args[0];
-                int value = currentLine;
+                int value = currentLine + 1;
                 if (values.ContainsKey(player))
                 {
                     values[player] = value;

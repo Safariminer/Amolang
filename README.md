@@ -27,6 +27,22 @@ AmoLang makes AMONGUSISABIGSUSSYBAKAHAHAHAHAHATHISLANGUAGEISREALLYCOOLPLEASEUSEI
 
 ## Samples:
 
+### 100 Hello worlds
+
+This would have taken 1414 lines of Amongusisabigsussybaka. It now takes 9 lines including a comment.
+
+```
+WAIT A SEC Print Hello World 100 times
+GUYS I CAN VOUCH loopAmount IS 100
+printFunc WHERE WAS THE BODY
+GUYS GUYS GUYS Hello, World!
+loopAmount HOW MANY BODIES
+loopAmount GOES DOWN
+IF ITS NOT loopAmount THEN VOTE ME
+HOLY MOLY GUYS REWIND TO printFunc
+YOU WERE EJECTED
+```
+
 ### Letter guess game
 
 This example showcases AmoLang's proto-functions labels.
