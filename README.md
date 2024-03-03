@@ -29,7 +29,7 @@ AmoLang makes AMONGUSISABIGSUSSYBAKAHAHAHAHAHATHISLANGUAGEISREALLYCOOLPLEASEUSEI
 
 ### 100 Hello worlds
 
-This would have taken 1414 lines of Amongusisabigsussybaka. It now takes 9 lines including a comment.
+This would have taken 1410 lines of Amongusisabigsussybaka. It now takes 9 lines including a comment.
 
 ```
 WAIT A SEC Print Hello World 100 times
